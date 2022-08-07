@@ -1,6 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Admin\TableController;
+use Illuminate\Support\Facades\Route; 
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +28,16 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
-    
+// Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
+//     Route::get('/', [AdminController::class, 'index']); 
+// });
+
+
+
+Route::group(['prefix'=>'admin', 'as'=>'admin.','middleware'=>['auth', 'admin']], function(){
+    Route::get('/', [AdminController::class, 'index'])->name('index'); 
+    Route::resource('/categories', CategoryController::class)->name('GET', 'categories.index') ;
+    Route::resource('/menus', MenuController::class)->name('GET', 'menus.index');
+    Route::resource('/table', TableController::class)->name('GET', 'table.index');
+    Route::resource('/reservation', ReservationController::class)->name('GET', 'reservation.index'); 
 });

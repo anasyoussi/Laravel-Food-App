@@ -1,4 +1,5 @@
-<x-admin-layout>
+<div>
+    <!-- Well begun is half done. - Aristotle -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -14,4 +15,4 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
+</div>
