@@ -13,29 +13,29 @@
                 </div>
 
                 <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
-                    <form enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('admin.categories.store') }}">
+                        @csrf
                         <div class="sm:col-span-6 col-span-12">
-                            <label for="title" class="block text-sm font-medium text-gray-700"> Category Name </label>
+                            <label for="name" class="block text-sm font-medium text-gray-700"> Category Name </label>
                             <div class="mt-1">
-                                <input type="text" id="title" wire:model.lazy="title" name="title" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                <input type="text" name="name" id="name" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
                         <div class="sm:col-span-6 mt-2">
-                            <label for="title" class="block text-sm font-medium text-gray-700"> Category Description </label>
+                            <label for="description" class="block text-sm font-medium text-gray-700"> Category Description </label>
                             <div class="mt-1">
-                                <input type="text" id="title" wire:model.lazy="title" name="title" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                    <textarea name="description" id="description" cols="30" rows="10" class="w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
                             </div>
                         </div>
                         <div class="sm:col-span-6 mt-2">
-                            <label for="title" class="block text-sm font-medium text-gray-700"> Post Image </label>
+                            <label for="image" class="block text-sm font-medium text-gray-700"> Post Image </label>
                             <div class="mt-1">
-                                <input type="file" id="image" wire:model="newImage" name="image" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                <input type="file" name="image" id="image" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
                         </div>
                         <div class="flex justify-end m-2 p-2">
                             <button type="submit" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white">Add</button>
-                        </div>
-                         
+                        </div> 
                     </form>
                 </div>
 

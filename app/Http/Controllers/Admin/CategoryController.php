@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Models\Category; 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $catergories = Category::all(); 
-        return view('admin.categories.index', compact($catergories)); 
+        $categories = Category::all(); 
+        return view('admin.categories.index', compact('categories')); 
     }
 
     /**
@@ -35,9 +38,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CategoryStoreRequest $request)
+    { 
+        $category = Category::create($request->except('_token'));
+        if($request->hasFile('image')){
+            $file       = $request->file('image'); 
+            $filename   = Str::uuid().$file->getClientOriginalName(); 
+            $file->move(public_path('images/categories'), $filename);
+            $path       ='images/categories/'.$filename;
+            $category->update(['image' => $path]); 
+        } 
+
+        $categories = Category::all(); 
+        return redirect()->route('admin.categories.index', compact('categories'));  
     }
 
     /**
