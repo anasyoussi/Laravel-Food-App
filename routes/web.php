@@ -38,6 +38,6 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.','middleware'=>['auth', 'admin']]
     Route::get('/', [AdminController::class, 'index'])->name('index'); 
     Route::resource('/categories', CategoryController::class)->name('GET', 'categories.index') ;
     Route::resource('/menus', MenuController::class)->name('GET', 'menus.index');
-    Route::resource('/table', TableController::class)->name('GET', 'table.index');
-    Route::resource('/reservation', ReservationController::class)->name('GET', 'reservation.index'); 
+    Route::resource('/tables', TableController::class)->name('GET', 'tables.index');
+    Route::resource('/reservations', ReservationController::class)->name('GET', 'reservations.index'); 
 });
